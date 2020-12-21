@@ -1,6 +1,6 @@
 import express from "express";
 import expressJoi from 'express-joi-validation'
-import bodyRequestSchema from "./userRequest";
+import bodyRequestSchema from "./userRequest.js";
 const validator = expressJoi.createValidator()
 
 
