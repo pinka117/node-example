@@ -8,6 +8,7 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js\n",
     "safestart": "node --experimental-modules src/server.js",
     "prod": "pm2 start npm -- run safestart",
+    "Jest: Start Runner":"npm test",
     "dev": "nodemon src/server.js"
   },
   "keywords": [],
@@ -38,6 +39,8 @@
   },
   "jest": {
     "verbose": true,
-    "testEnvironment": "node"
+    "transform": {},
+    "testEnvironment": "jest-environment-node"
+    
   }
 }
