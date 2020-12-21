@@ -4,7 +4,12 @@
         "node": true
     },
     "extends": [
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:security/recommended"
+    ],
+    "plugins": [
+        "mocha",
+        "security"
     ],
     "parserOptions": {
         "ecmaVersion": 12,
