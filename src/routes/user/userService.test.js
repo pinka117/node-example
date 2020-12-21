@@ -18,9 +18,7 @@ test('Create duplicate user', async () => {
         await createUser('name@email.com',
             'name',
             'a',
-            'a').then((state) => {
-
-        });
+            'a')
     };
     await expect(createUserPromise).rejects.toThrow();
 
@@ -33,9 +31,7 @@ test('Create correct user', async () => {
         await createUser('name@email.com',
             'name',
             'a',
-            'a').then((state) => {
-
-        });
+            'a')
     };
     await createUserPromise();
 
