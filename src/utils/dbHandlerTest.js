@@ -5,11 +5,11 @@ const { MongoMemoryServer } = mongoMemoryServer;
 
 const mongod = new MongoMemoryServer();
 
-/**
+/**np
  * Connect to the in-memory database.
  */
 const connect = async () => {
-  const uri = await mongod.getConnectionString();
+  const uri = await mongod.getUri();
 
   const mongooseOpts = {
     useNewUrlParser: true,
