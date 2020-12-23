@@ -6,9 +6,8 @@
     "paths": {
       "/api/user/signup": {
         "post": {
-          "summary": "Create a new todo item",
+          "summary": "Create a user",
           "requestBody":{ 
-            "description": "Optional description in *Markdown*",
             "required": "true",
             "content":{ "application/json":{
               "schema":{
@@ -21,6 +20,9 @@
           "responses": {
             "201": {
               "description": "Creation successful"
+            },
+            "400":{
+              "description": "Unable to signup"
             }
           }
         }
