@@ -1,0 +1,78 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Example API"
+  },
+  "paths": {
+    "/api/user/signup": {
+      "post": {
+        "summary": "Create a new todo item",
+        "requestBody": {
+          "description": "Optional description in *Markdown*",
+          "required": "true",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "mail": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "surname": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "mail",
+                  "surname",
+                  "password"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Creation successful"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "userRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "mail": {
+          "type": "string",
+          "format": "email"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "mail",
+        "surname",
+        "password"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

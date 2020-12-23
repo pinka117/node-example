@@ -8,7 +8,8 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js\n",
     "safestart": "node --experimental-modules src/server.js",
     "prod": "pm2 start npm -- run safestart",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon --experimental-json-modules --experimental-vm-modules src/server.js",
+    "swagger": "json-refs resolve ./src/swagger.json > ./src/dist/swagger.json"
   },
   "keywords": [],
   "author": "",
@@ -17,9 +18,15 @@
     "bcrypt": "^5.0.0",
     "express": "^4.17.1",
     "express-joi-validation": "^5.0.0",
+    "express-json-validator-middleware": "^2.1.1",
+    "express-jsonschema": "^1.1.6",
     "joi": "^17.3.0",
+    "joi-to-json-schema": "^5.1.0",
+    "joi-to-swagger": "^5.1.0",
+    "json-refs": "^3.0.15",
     "mongoose": "^5.11.8",
     "pm2": "^4.5.1",
+    "swagger-ui-express": "^4.1.6",
     "validator": "^13.5.2"
   },
   "devDependencies": {
@@ -39,6 +46,5 @@
     "verbose": true,
     "transform": {},
     "testEnvironment": "jest-environment-node"
-    
   }
 }
