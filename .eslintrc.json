@@ -8,7 +8,6 @@
         "plugin:security/recommended"
     ],
     "plugins": [
-        "mocha",
         "security"
     ],
     "parserOptions": {
