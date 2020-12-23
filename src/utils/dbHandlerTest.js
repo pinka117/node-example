@@ -37,6 +37,7 @@ const clearDatabase = async () => {
   const collections = mongoose.connection.collections;
 
   for (const key in collections) {
+    // eslint-disable-next-line security/detect-object-injection
     const collection = collections[key];
     await collection.deleteMany();
   }
