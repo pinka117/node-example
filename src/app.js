@@ -1,19 +1,11 @@
 import express from "express";
 import swaggerUi from 'swagger-ui-express';
-import expressValidatorMiddleware from 'express-json-validator-middleware';
-
-
 
 import userRouter from "./routes/user/userRouter.js";
 
 import { connectToDB } from "./utils/db.js";
 
 import swaggerDoc from './dist/swagger.json'
-
-
-const {Validator} = expressValidatorMiddleware;
-const validator = new Validator({ allErrors: true });
-
 
 connectToDB();
 

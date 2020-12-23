@@ -1,11 +1,11 @@
 import express from "express";
-import userRequestSchema from './userRequestSchema.json';
+import expressJsonSchema from 'express-jsonschema';
 
 import { createUser } from "./userService.js";
-import expressJsonSchema from 'express-jsonschema';
+
+import userRequestSchema from './userRequestSchema.json';
+
 var validate = expressJsonSchema.validate;
-
-
 
 const router = new express.Router();
 
