@@ -1,15 +1,14 @@
 {
-    "type": "object",
-    "properties": {
-      "mail": {
-        "type": "string",
-        "format":"email"
-
-      },
-      "password": {
-        "type": "string"
-      }
+  "type": "object",
+  "properties": {
+    "mail": {
+      "type": "string",
+      "format": "email"
     },
-    "required": ["mail","password"],
-    "additionalProperties": false
-  }
+    "password": {
+      "type": "string"
+    }
+  },
+  "required": ["mail", "password"],
+  "additionalProperties": false
+}

@@ -1,63 +1,87 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-      "title": "Example API"
-    },
-    "paths": {
-      "/api/user/signup": {
-        "post": {
-          "summary": "Create a user",
-          "requestBody":{ 
-            "required": "true",
-            "content":{ "application/json":{
-              "schema":{
-                "$ref": "#/definitions/userSignupRequest"
-                }
-                }
-                }
-              },
-             
-          "responses": {
-            "201": {
-              "description": "Creation successful"
-            },
-            "400":{
-              "description": "Unable to signup"
-            }
-          }
-        }
-      },
-      "/api/user/login": {
-        "post": {
-          "summary": "Login a user",
-          "requestBody":{ 
-            "required": "true",
-            "content":{ "application/json":{
-              "schema":{
-                "$ref": "#/definitions/userLoginRequest"
-                }
-                }
-                }
-              },
-             
-          "responses": {
-            "200": {
-              "description": "Login successful"
-            },
-            "400":{
-              "description": "Unable to login"
-            }
-          }
-        }
-      }
-    },
-    "definitions": {
-      "userSignupRequest": {
-        "$ref": "./routes/user/userSignupRequestSchema.json"
-      },
-      "userLoginRequest": {
-        "$ref": "./routes/user/userLoginRequestSchema.json"
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Example API"
+  },
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "JSESSIONID"
       }
     }
+  },
+  "paths": {
+    "/api/user/signup": {
+      "post": {
+        "summary": "Create a user",
+        "requestBody": {
+          "required": "true",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/userSignupRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Creation successful"
+          },
+          "400": {
+            "description": "Unable to signup"
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "summary": "Login a user",
+        "requestBody": {
+          "required": "true",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/userLoginRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Login successful"
+          },
+          "400": {
+            "description": "Unable to login"
+          }
+        }
+      }
+    },
+    "/api/user/me": {
+      "get": {
+        "summary": "Return my user",
+        "security": { "cookieAuth": [] },
+        "responses": {
+          "200": {
+            "description": "Return my user info"
+          },
+          "401": {
+            "description": "User not logged in"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "userSignupRequest": {
+      "$ref": "./routes/user/userSignupRequestSchema.json"
+    },
+    "userLoginRequest": {
+      "$ref": "./routes/user/userLoginRequestSchema.json"
+    }
   }
-  
+}

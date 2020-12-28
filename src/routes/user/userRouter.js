@@ -4,9 +4,10 @@ import expressJsonSchema from "express-jsonschema";
 
 import { createUser } from "./userService.js";
 
+import auth from "../../middleware/authMiddleware.js";
+
 import userSignupRequestSchema from "./userSignupRequestSchema.json";
 import userLoginRequestSchema from "./userLoginRequestSchema.json";
-
 
 var validate = expressJsonSchema.validate;
 
@@ -34,5 +35,9 @@ router.post(
     res.send({ user: req.user });
   }
 );
+
+router.get("/me", auth, async (req, res) => {
+  res.status(200).send(req.user);
+});
 
 export default router;
