@@ -1,9 +1,12 @@
 import express from "express";
+import passport from "passport";
 import expressJsonSchema from "express-jsonschema";
 
 import { createUser } from "./userService.js";
 
-import userRequestSchema from "./userRequestSchema.json";
+import userSignupRequestSchema from "./userSignupRequestSchema.json";
+import userLoginRequestSchema from "./userLoginRequestSchema.json";
+
 
 var validate = expressJsonSchema.validate;
 
@@ -11,7 +14,7 @@ const router = new express.Router();
 
 router.post(
   "/signup",
-  validate({ body: userRequestSchema }),
+  validate({ body: userSignupRequestSchema }),
   async (req, res) => {
     const { mail, name, surname, password } = req.body;
     try {
@@ -22,4 +25,14 @@ router.post(
     }
   }
 );
+
+router.post(
+  "/login",
+  validate({ body: userLoginRequestSchema }),
+  passport.authenticate("local"),
+  async (req, res) => {
+    res.send({ user: req.user });
+  }
+);
+
 export default router;

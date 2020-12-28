@@ -11,7 +11,7 @@
             "required": "true",
             "content":{ "application/json":{
               "schema":{
-                "$ref": "#/definitions/userRequest"
+                "$ref": "#/definitions/userSignupRequest"
                 }
                 }
                 }
@@ -26,11 +26,37 @@
             }
           }
         }
+      },
+      "/api/user/login": {
+        "post": {
+          "summary": "Login a user",
+          "requestBody":{ 
+            "required": "true",
+            "content":{ "application/json":{
+              "schema":{
+                "$ref": "#/definitions/userLoginRequest"
+                }
+                }
+                }
+              },
+             
+          "responses": {
+            "200": {
+              "description": "Login successful"
+            },
+            "400":{
+              "description": "Unable to login"
+            }
+          }
+        }
       }
     },
     "definitions": {
-      "userRequest": {
-        "$ref": "./routes/user/userRequestSchema.json"
+      "userSignupRequest": {
+        "$ref": "./routes/user/userSignupRequestSchema.json"
+      },
+      "userLoginRequest": {
+        "$ref": "./routes/user/userLoginRequestSchema.json"
       }
     }
   }

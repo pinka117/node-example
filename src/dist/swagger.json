@@ -48,10 +48,47 @@
           }
         }
       }
+    },
+    "/api/user/login": {
+      "post": {
+        "summary": "Login a user",
+        "requestBody": {
+          "required": "true",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mail": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "mail",
+                  "password"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful"
+          },
+          "400": {
+            "description": "Unable to login"
+          }
+        }
+      }
     }
   },
   "definitions": {
-    "userRequest": {
+    "userSignupRequest": {
       "type": "object",
       "properties": {
         "name": {
@@ -72,6 +109,23 @@
         "name",
         "mail",
         "surname",
+        "password"
+      ],
+      "additionalProperties": false
+    },
+    "userLoginRequest": {
+      "type": "object",
+      "properties": {
+        "mail": {
+          "type": "string",
+          "format": "email"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mail",
         "password"
       ],
       "additionalProperties": false
