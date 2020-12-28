@@ -13,12 +13,15 @@ passport.use(
     },
     async (mail, password, done) => {
       const user = await User.findOne({ mail });
-
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch || !user) {
-        return done("Wrong credentials");
+      if (user) {
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (isMatch) {
+          return done(null, user);
+        } else {
+          return done("Wrong credentials");
+        }
       } else {
-        return done(null, user);
+        return done("Wrong credentials");
       }
     }
   )
