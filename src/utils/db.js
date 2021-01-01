@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-export const connectToDB = () => {
+export const connectToDB = async () => {
   try {
-    mongoose.connect(
+    await mongoose.connect(
       process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/example",
       {
         useNewUrlParser: true,
