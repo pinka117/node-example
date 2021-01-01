@@ -7,7 +7,7 @@ import store from "connect-redis";
 
 import userRouter from "./routes/user/userRouter.js";
 
-import { redisConfiguration } from "./configuration/env.js";
+import { config } from "./configuration/env.js";
 
 import jsonSchemaValidationErrorMiddleware from "./middleware/jsonSchemaValidatorErrorMiddleware.js";
 
@@ -24,11 +24,12 @@ const redisClient = redis.createClient();
 
 app.use(
   session({
+    secret: config.redis.secret,
     store: new RedisStore({
       client: redisClient,
-      host: redisConfiguration.host,
-      port: redisConfiguration.port,
-      password: redisConfiguration.password,
+      host: config.redis.host,
+      port: config.redis.port,
+      password: config.redis.password,
     }),
   })
 );
@@ -36,8 +37,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/api-docs", swaggerUi.serve);
-app.get("/api-docs", swaggerUi.setup(swaggerDoc));
+if(config.isLocalhost) {
+  app.use("/api-docs", swaggerUi.serve);
+  app.get("/api-docs", swaggerUi.setup(swaggerDoc));
+}
 
 app.use("/api/user", userRouter);
 
